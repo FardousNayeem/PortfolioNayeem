@@ -11,7 +11,7 @@ export default function ResumeNew() {
       <Particle />
 
       <Row style={{ justifyContent: "center", position: "relative" }}>
-        <h1> My Resume</h1>
+        <h1>My Resume</h1>
       </Row>
 
       <Row style={{ justifyContent: "center", paddingTop: "30px", paddingBottom: "30px" }}>
