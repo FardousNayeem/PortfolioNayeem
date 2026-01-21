@@ -1,19 +1,50 @@
 import { Container, Row, Col } from "react-bootstrap";
 import homeLogo from "../../assets/home-main.svg";
 
-import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
 
 import { AiFillGithub, AiOutlineFacebook, AiFillRedditSquare } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
+import { useEdgeNavigate } from "../Navigate/useEdgeNavigate";
+import { NextSectionHint } from "../NextSectionHint";
+
 export default function Home() {
+  const {
+    topRef,
+    bottomRef,
+    prev,
+    next,
+    showPrevHint,
+    showNextHint,
+    goPrev,
+    goNext,
+  } = useEdgeNavigate({ auto: true });
+
   return (
     <section>
-      <Container fluid className="home-section" id="home">
-        <Particle />
+      <div ref={topRef} style={{ height: 1 }} />
 
+      {prev ? (
+        <NextSectionHint
+          visible={showPrevHint}
+          position="top"
+          text={`Prev: ${prev.label}`}
+          onClick={goPrev}
+        />
+      ) : null}
+
+      {next ? (
+        <NextSectionHint
+          visible={showNextHint}
+          position="bottom"
+          text={`Next: ${next.label}`}
+          onClick={goNext}
+        />
+      ) : null}
+
+      <Container fluid className="home-section" id="home">
         <Container className="home-content">
           <Row>
             <Col md={7} className="home-header">
@@ -30,7 +61,7 @@ export default function Home() {
               </h1>
 
               <div style={{ padding: 30, paddingLeft: 50, textAlign: "left" }}>
-                <h1>I&apos;M  Into</h1> <Type />
+                <h1>I&apos;M Into</h1> <Type />
               </div>
             </Col>
 
@@ -40,6 +71,7 @@ export default function Home() {
                 alt="home pic"
                 className="img-fluid"
                 style={{ maxHeight: "450px" }}
+                loading="lazy"
               />
             </Col>
           </Row>
@@ -104,6 +136,8 @@ export default function Home() {
           </Col>
         </Row>
       </Container>
+
+      <div ref={bottomRef} style={{ height: 1 }} />
     </section>
   );
 }

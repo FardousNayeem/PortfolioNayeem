@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 
-import Particle from "../Particle";
 import Github from "./Github";
 import Techstack from "./Techstack";
 import AboutCard from "./AboutCard";
@@ -8,12 +7,44 @@ import Toolstack from "./Toolstack";
 
 import laptopImg from "../../assets/about.png";
 
+import { useEdgeNavigate } from "../Navigate/useEdgeNavigate";
+import { NextSectionHint } from "../NextSectionHint";
+
 export default function About() {
+  const {
+    topRef,
+    bottomRef,
+    prev,
+    next,
+    showPrevHint,
+    showNextHint,
+    goPrev,
+    goNext,
+  } = useEdgeNavigate({ auto: true });
+
   return (
     <>
-      <Particle />
+      <div ref={topRef} style={{ height: 1 }} />
 
-      <Container fluid className="about-section">
+      {prev ? (
+        <NextSectionHint
+          visible={showPrevHint}
+          position="top"
+          text={`Prev: ${prev.label}`}
+          onClick={goPrev}
+        />
+      ) : null}
+
+      {next ? (
+        <NextSectionHint
+          visible={showNextHint}
+          position="bottom"
+          text={`Next: ${next.label}`}
+          onClick={goNext}
+        />
+      ) : null}
+
+      <Container fluid className="about-section" id="about">
         <Container>
           <Row style={{ justifyContent: "center", padding: "10px" }}>
             <Col
@@ -36,7 +67,12 @@ export default function About() {
               style={{ paddingTop: "120px", paddingBottom: "50px" }}
               className="about-img"
             >
-              <img src={laptopImg} alt="about" className="img-fluid" />
+              <img
+                src={laptopImg}
+                alt="about"
+                className="img-fluid"
+                loading="lazy"
+              />
             </Col>
           </Row>
 
@@ -55,6 +91,9 @@ export default function About() {
           <Github />
         </Container>
       </Container>
+
+      
+      <div ref={bottomRef} style={{ height: 1 }} />
     </>
   );
 }
