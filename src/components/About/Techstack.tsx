@@ -2,21 +2,21 @@ import { Col, Row } from "react-bootstrap";
 import { SiNextdotjs, SiFlutter, SiDjango, SiFlask, SiDart, SiSqlite, SiVmware, SiBootstrap, SiPhp } from "react-icons/si";
 
 
-import Javascript from "../../Assets/TechIcons/Javascript.svg";
-import Node from "../../Assets/TechIcons/Node.svg";
-import ReactIcon from "../../Assets/TechIcons/React.svg";
-import Java from "../../Assets/TechIcons/Java.svg";
-import Python from "../../Assets/TechIcons/Python.svg";
-import Typescript from "../../Assets/TechIcons/Typescript.svg";
-import Git from "../../Assets/TechIcons/Git.svg";
-import Firebase from "../../Assets/TechIcons/Firebase.svg";
-import Redis from "../../Assets/TechIcons/Redis.svg";
-import Docker from "../../Assets/TechIcons/Docker.svg";
-import Mongo from "../../Assets/TechIcons/Mongo.svg";
-import SQL from "../../Assets/TechIcons/SQL.svg";
-import Tailwind from "../../Assets/TechIcons/Tailwind.svg";
-import MUI from "../../Assets/TechIcons/MUI.svg";
-import Postman from "../../Assets/TechIcons/Postman.svg";
+import Javascript from "../../assets/TechIcons/Javascript.svg";
+import Node from "../../assets/TechIcons/Node.svg";
+import ReactIcon from "../../assets/TechIcons/React.svg";
+import Java from "../../assets/TechIcons/Java.svg";
+import Python from "../../assets/TechIcons/Python.svg";
+import Typescript from "../../assets/TechIcons/Typescript.svg";
+import Git from "../../assets/TechIcons/Git.svg";
+import Firebase from "../../assets/TechIcons/Firebase.svg";
+import Redis from "../../assets/TechIcons/Redis.svg";
+import Docker from "../../assets/TechIcons/Docker.svg";
+import Mongo from "../../assets/TechIcons/Mongo.svg";
+import SQL from "../../assets/TechIcons/SQL.svg";
+import Tailwind from "../../assets/TechIcons/Tailwind.svg";
+import MUI from "../../assets/TechIcons/MUI.svg";
+import Postman from "../../assets/TechIcons/Postman.svg";
 
 export default function Techstack() {
   return (

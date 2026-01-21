@@ -6,7 +6,7 @@ import Techstack from "./Techstack";
 import AboutCard from "./AboutCard";
 import Toolstack from "./Toolstack";
 
-import laptopImg from "../../Assets/about.png";
+import laptopImg from "../../assets/about.png";
 
 export default function About() {
   return (

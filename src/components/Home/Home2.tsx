@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Tilt from "react-parallax-tilt";
 
-import myImg from "../../Assets/avatar.svg";
+import myImg from "../../assets/avatar.svg";
 
 export default function Home2() {
   return (

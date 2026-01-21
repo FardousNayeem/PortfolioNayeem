@@ -2,10 +2,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../Particle";
 import ProjectCard from "./ProjectCards";
 
-import BloodaidImg from "../../Assets/Projects/BloodAid.png";
-import scholarsHubImg from "../../Assets/Projects/ScholarsHub.png";
-import AniflixImg from "../../Assets/Projects/Aniflix.png";
-import UmateImg from "../../Assets/Projects/Umate.png";
+import BloodaidImg from "../../assets/Projects/BloodAid.png";
+import scholarsHubImg from "../../assets/Projects/ScholarsHub.png";
+import AniflixImg from "../../assets/Projects/Aniflix.png";
+import UmateImg from "../../assets/Projects/Umate.png";
 
 type Project = {
   title: string;

@@ -2,8 +2,8 @@ import { Container, Row } from "react-bootstrap";
 import { AiOutlineDownload } from "react-icons/ai";
 import Particle from "./Particle";
 
-import pdfFile from "../Assets/FardousNayeemResume.pdf";
-import resumeImg from "../Assets/FardousNayeem_CV.jpg";
+import pdfFile from "../assets/FardousNayeemResume.pdf";
+import resumeImg from "../assets/FardousNayeem_CV.jpg";
 
 export default function ResumeNew() {
   return (

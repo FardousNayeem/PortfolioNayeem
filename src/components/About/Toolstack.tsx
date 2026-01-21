@@ -1,10 +1,10 @@
 import { Col, Row } from "react-bootstrap";
 
-import EndeavourOS from "../../Assets/TechIcons/EndeavourOS.svg";
-import Firefox from "../../Assets/TechIcons/Firefox.svg";
-import Windows from "../../Assets/TechIcons/Windows.svg";
-import VSCodium from "../../Assets/TechIcons/VSCodium.svg";
-import GPT from "../../Assets/TechIcons/ChatGPT.svg";
+import EndeavourOS from "../../assets/TechIcons/EndeavourOS.svg";
+import Firefox from "../../assets/TechIcons/Firefox.svg";
+import Windows from "../../assets/TechIcons/Windows.svg";
+import VSCodium from "../../assets/TechIcons/VSCodium.svg";
+import GPT from "../../assets/TechIcons/ChatGPT.svg";
 
 export default function Toolstack() {
   return (
