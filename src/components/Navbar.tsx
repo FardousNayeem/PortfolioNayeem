@@ -13,7 +13,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 
-function NavBar() {
+function NavigationBar() {
   const [expanded, setExpanded] = useState(false);
   const [navColour, setNavColour] = useState(false);
 
@@ -85,4 +85,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavigationBar;
