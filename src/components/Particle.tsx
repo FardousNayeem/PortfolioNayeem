@@ -10,7 +10,7 @@ export default function Particle() {
   }, []);
 
   const options: ISourceOptions = {
-    fullScreen: { enable: false },
+    fullScreen: { enable: true, zIndex: 0 },
     detectRetina: true,
     fpsLimit: 60,
 
