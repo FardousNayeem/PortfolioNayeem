@@ -1,31 +1,37 @@
 import { Col, Row } from "react-bootstrap";
 
-import macOs from "../../Assets/TechIcons/Apple MacOSX.svg";
-import chrome from "../../Assets/TechIcons/Google Chrome.svg";
-import vsCode from "../../Assets/TechIcons/vscode.svg";
-import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
+import EndeavourOS from "../../Assets/TechIcons/EndeavourOS.svg";
+import Firefox from "../../Assets/TechIcons/Firefox.svg";
+import Windows from "../../Assets/TechIcons/Windows.svg";
+import VSCodium from "../../Assets/TechIcons/VSCodium.svg";
+import GPT from "../../Assets/TechIcons/ChatGPT.svg";
 
 export default function Toolstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <Col xs={4} md={2} className="tech-icons">
-        <img src={macOs} alt="macOS" className="tech-icon-images" />
-        <div className="tech-icons-text">macOS</div>
+        <img src={EndeavourOS} alt="EndeavourOS" className="tech-icon-images" />
+        <div className="tech-icons-text">EndeavourOS</div>
       </Col>
 
       <Col xs={4} md={2} className="tech-icons">
-        <img src={chrome} alt="Google Chrome" className="tech-icon-images" />
-        <div className="tech-icons-text">Google Chrome</div>
+        <img src={Firefox} alt="Firefox" className="tech-icon-images" />
+        <div className="tech-icons-text">Firefox</div>
       </Col>
 
       <Col xs={4} md={2} className="tech-icons">
-        <img src={vsCode} alt="VS Code" className="tech-icon-images" />
-        <div className="tech-icons-text">VS Code</div>
+        <img src={VSCodium} alt="VSCodium" className="tech-icon-images" />
+        <div className="tech-icons-text">VSCodium</div>
       </Col>
 
       <Col xs={4} md={2} className="tech-icons">
-        <img src={intelliJ} alt="IntelliJ IDEA" className="tech-icon-images" />
-        <div className="tech-icons-text">IntelliJ</div>
+        <img src={GPT} alt="ChatGPT" className="tech-icon-images" />
+        <div className="tech-icons-text">ChatGPT</div>
+      </Col>
+
+      <Col xs={4} md={2} className="tech-icons">
+        <img src={Windows} alt="Windows 10" className="tech-icon-images" />
+        <div className="tech-icons-text">Windows 10</div>
       </Col>
     </Row>
   );

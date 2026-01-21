@@ -47,7 +47,7 @@ export default function About() {
           <Techstack />
 
           <h1 className="project-heading">
-            <strong className="purple">Tools</strong> I use
+            My <strong className="purple">Development</strong> Environment
           </h1>
 
           <Toolstack />
