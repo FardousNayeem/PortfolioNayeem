@@ -14,7 +14,7 @@ export default function Home2() {
             </h1>
 
             <p className="home-about-body">
-              I’m a Software Engineer who loves transforming ideas into reliable,
+              I’m a Software Developer who loves transforming ideas into reliable,
               scalable products. Over time, I’ve explored several technologies
               and found my passion in building smart systems and
               intuitive user experiences.
