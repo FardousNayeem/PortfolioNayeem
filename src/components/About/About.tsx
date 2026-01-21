@@ -41,7 +41,7 @@ export default function About() {
           </Row>
 
           <h1 className="project-heading">
-            Professional <strong className="purple">Skillset </strong>
+            Professional <strong className="purple">Skills & Abilities</strong>
           </h1>
 
           <Techstack />

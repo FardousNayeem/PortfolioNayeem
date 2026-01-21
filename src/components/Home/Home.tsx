@@ -29,8 +29,8 @@ export default function Home() {
                 <strong className="main-name"> FARDOUS NAYEEM</strong>
               </h1>
 
-              <div style={{ padding: 50, textAlign: "left" }}>
-                <Type />
+              <div style={{ padding: 30, paddingLeft: 50, textAlign: "left" }}>
+                <h1>I&apos;M  Into</h1> <Type />
               </div>
             </Col>
 
