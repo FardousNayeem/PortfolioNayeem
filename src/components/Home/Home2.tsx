@@ -24,7 +24,7 @@ export default function Home2() {
               <i>
                 <b className="purple"> JavaScript, Dart, Python and Java </b>
               </i>
-              — and I enjoy working across both backend and frontend stacks.
+              and I enjoy working across both backend and frontend stacks.
               <br />
               <br />
               My key areas of interest include developing
