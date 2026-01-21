@@ -1,31 +1,29 @@
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
+import type { Engine } from "tsparticles-engine";
+import { loadSlim } from "tsparticles-slim";
 import type { ISourceOptions } from "tsparticles-engine";
 
 export default function Particle() {
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadSlim(engine);
+  }, []);
+
   const options: ISourceOptions = {
+    fullScreen: { enable: false },
+    detectRetina: true,
     fpsLimit: 60,
+
     particles: {
       number: {
-        value: 160,
-        density: {
-          enable: true,
-          area: 1500, 
-        },
+        value: 200,
+        density: { enable: true, area: 1500 },
       },
-      links: {
-        enable: false,
-        opacity: 0.03,
-      },
-      move: {
-        direction: "right",
-        enable: true,
-        speed: 0.05,
-      },
-      size: {
-        value: 1,
-      },
+      color: { value: "#ffffff" },
+      shape: { type: "circle" },
+
       opacity: {
-        value: { min: 0.05, max: 1 },
+        value: { min: 0.0, max: 0.5 },
         animation: {
           enable: true,
           speed: 1,
@@ -33,22 +31,30 @@ export default function Particle() {
           sync: false,
         },
       },
+
+      size: { value: 1.5 },
+
+      move: {
+        enable: true,
+        direction: "right",
+        speed: 0.05,
+        outModes: { default: "out" },
+      },
+
+      links: {
+        enable: false,
+      },
     },
+
     interactivity: {
       events: {
-        onClick: {
-          enable: true,
-          mode: "push",
-        },
+        onClick: { enable: true, mode: "push" },
       },
       modes: {
-        push: {
-          quantity: 1,
-        },
+        push: { quantity: 1 },
       },
     },
-    detectRetina: true,
   };
 
-  return <Particles id="tsparticles" options={options} />;
+  return <Particles id="tsparticles" init={particlesInit} options={options} />;
 }
