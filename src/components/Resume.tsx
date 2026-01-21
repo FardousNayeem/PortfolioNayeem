@@ -19,7 +19,7 @@ export default function Resume() {
     showNextHint,
     goPrev,
     goNext,
-  } = useEdgeNavigate({ auto: true });
+  } = useEdgeNavigate({ auto: false });
 
   return (
     <>

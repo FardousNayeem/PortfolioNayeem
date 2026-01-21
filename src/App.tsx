@@ -1,11 +1,6 @@
+// App.tsx
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Preloader from "./components/Pre";
 import NavigationBar from "./components/Navbar";
@@ -16,42 +11,9 @@ import Footer from "./components/Footer";
 import Resume from "./components/Resume";
 import ScrollToTop from "./components/ScrollToTop";
 import Particle from "./components/Particle";
-import RouteTransitionOverlay from "./components/RouteTransitionOverlay";
 
 import "./style.css";
 import "./App.css";
-
-function AppShell({ load }: { load: boolean }) {
-  const location = useLocation();
-  const [transitioning, setTransitioning] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTransitioning(true);
-    const t = window.setTimeout(() => setTransitioning(false), 650);
-    return () => window.clearTimeout(t);
-  }, [location.pathname]);
-
-  return (
-    <div className="App" id={load ? "no-scroll" : "scroll"}>
-      <Particle />
-      <RouteTransitionOverlay show={transitioning} />
-
-      <NavigationBar />
-      <ScrollToTop />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/project" element={<Projects />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-
-      <Footer />
-    </div>
-  );
-}
 
 export default function App() {
   const [load, updateLoad] = useState<boolean>(true);
@@ -64,7 +26,21 @@ export default function App() {
   return (
     <Router>
       <Preloader load={load} />
-      <AppShell load={load} />
+      <div className="App" id={load ? "no-scroll" : "scroll"}>
+        <Particle />
+        <NavigationBar />
+        <ScrollToTop />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/project" element={<Projects />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+
+        <Footer />
+      </div>
     </Router>
   );
 }

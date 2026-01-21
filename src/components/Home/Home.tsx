@@ -20,7 +20,7 @@ export default function Home() {
     showNextHint,
     goPrev,
     goNext,
-  } = useEdgeNavigate({ auto: true });
+  } = useEdgeNavigate({ auto: false });
 
   return (
     <section>

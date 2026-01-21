@@ -79,7 +79,7 @@ export default function Projects() {
     showNextHint,
     goPrev,
     goNext,
-  } = useEdgeNavigate({ auto: true });
+  } = useEdgeNavigate({ auto: false });
 
   return (
     <>

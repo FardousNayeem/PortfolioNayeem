@@ -2,8 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTE_ORDER } from "./routeorder";
 
-type ScrollTo = "top" | "bottom";
-type NavState = { scrollTo?: ScrollTo; suppressAutoUntil?: number };
+type NavState = { suppressAutoUntil?: number };
 
 function getPrevNext(pathname: string) {
   const idx = ROUTE_ORDER.findIndex((r) => r.path === pathname);
@@ -13,7 +12,7 @@ function getPrevNext(pathname: string) {
 }
 
 export function useEdgeNavigate(opts?: { auto?: boolean }) {
-  const auto = opts?.auto ?? true;
+  const auto = opts?.auto ?? false;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,6 +39,8 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
   const bottomDebounceRef = useRef<number | null>(null);
   const topDebounceRef = useRef<number | null>(null);
 
+  const pendingNavRef = useRef<number | null>(null);
+
   const { prev, next } = useMemo(() => getPrevNext(pathname), [pathname]);
 
   useEffect(() => {
@@ -52,6 +53,9 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
     if (topDebounceRef.current) window.clearTimeout(topDebounceRef.current);
     bottomDebounceRef.current = null;
     topDebounceRef.current = null;
+
+    if (pendingNavRef.current) window.clearTimeout(pendingNavRef.current);
+    pendingNavRef.current = null;
   }, [pathname]);
 
   useEffect(() => {
@@ -91,36 +95,46 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
     return true;
   };
 
+  const scheduleNav = (fn: () => void) => {
+    if (pendingNavRef.current) window.clearTimeout(pendingNavRef.current);
+
+    pendingNavRef.current = window.setTimeout(() => {
+      pendingNavRef.current = null;
+      fn();
+    }, 1000);
+  };
+
   const goNext = useCallback(() => {
     if (!next) return;
+
     lockedRef.current = true;
     lastNavAtRef.current = Date.now();
 
-    navigate(next.path, {
-      state: {
-        scrollTo: "top",
-        suppressAutoUntil: Date.now() + 2200,
-      } satisfies NavState,
+    scheduleNav(() => {
+      navigate(next.path, {
+        state: { suppressAutoUntil: Date.now() + 2200 } satisfies NavState,
+      });
     });
 
-    window.setTimeout(() => (lockedRef.current = false), 1800);
+    window.setTimeout(() => (lockedRef.current = false), 2000);
   }, [navigate, next]);
 
   const goPrev = useCallback(() => {
     if (!prev) return;
+
     lockedRef.current = true;
     lastNavAtRef.current = Date.now();
 
-    navigate(prev.path, {
-      state: {
-        scrollTo: "bottom",
-        suppressAutoUntil: Date.now() + 2200, // prevents bounce on prev page mount
-      } satisfies NavState,
+    scheduleNav(() => {
+      navigate(prev.path, {
+        state: { suppressAutoUntil: Date.now() + 2200 } satisfies NavState,
+      });
     });
 
-    window.setTimeout(() => (lockedRef.current = false), 1800);
+    window.setTimeout(() => (lockedRef.current = false), 2000);
   }, [navigate, prev]);
 
+  // bottom sentinel (next)
   useEffect(() => {
     const el = bottomRef.current;
     if (!el || !next) return;
@@ -136,7 +150,7 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
         if (!entry.isIntersecting) return;
         if (directionRef.current !== "down") return;
 
-        if (downDistanceRef.current < 220) return;
+        if (downDistanceRef.current < 120) return;
 
         if (!canAutoNavigateNow()) return;
 
@@ -162,13 +176,14 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
     };
   }, [auto, next, goNext]);
 
+  // top sentinel (prev)
   useEffect(() => {
     const el = topRef.current;
     if (!el || !prev) return;
 
     const hintObserver = new IntersectionObserver(
       ([entry]) => setShowPrevHint(entry.isIntersecting),
-      { root: null, rootMargin: "320px 0px 0px 0px", threshold: 0.01 }
+      { root: null, rootMargin: "420px 0px 0px 0px", threshold: 0.01 }
     );
 
     const navObserver = new IntersectionObserver(
@@ -177,7 +192,7 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
         if (!entry.isIntersecting) return;
         if (directionRef.current !== "up") return;
 
-        if (upDistanceRef.current < 220) return;
+        if (upDistanceRef.current < 80) return;
 
         if (!canAutoNavigateNow()) return;
 
@@ -189,7 +204,7 @@ export function useEdgeNavigate(opts?: { auto?: boolean }) {
           goPrev();
         }, 260);
       },
-      { root: null, rootMargin: "80px 0px 0px 0px", threshold: 0.01 }
+      { root: null, rootMargin: "140px 0px 0px 0px", threshold: 0.01 }
     );
 
     hintObserver.observe(el);
