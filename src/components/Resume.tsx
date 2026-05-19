@@ -8,7 +8,7 @@ import { NextSectionHint } from "./NextSectionHint";
 
 export default function Resume() {
   const googleDriveLink =
-    "https://drive.google.com/file/d/1Q0OoQaDlRIPFfk0lq5X76VhfuxlQadKh/preview";
+    "https://drive.google.com/file/d/1CQ9MsQB53ws1QISbmPamLkrO_VLZHCCP/preview";
 
   const {
     topRef,
